@@ -1,0 +1,6 @@
+if TWO_PERCENT_MILK
+
+config ZMK_KEYBOARD_NAME
+  default "two_percent_milk"
+
+endif
