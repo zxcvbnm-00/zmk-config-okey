@@ -1,0 +1,2 @@
+config TWO_PERCENT_MILK
+  def_bool $(shields_list_contains,two_percent_milk)
