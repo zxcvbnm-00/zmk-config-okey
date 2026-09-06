@@ -1,0 +1,35 @@
+#include <dt-bindings/zmk/matrix_transform.h> 
+
+/ {
+    kscan: kscan {
+        compatible = "zmk,kscan-gpio-direct";
+        wakeup-source;
+
+        /* Menggabungkan kedua pin ke dalam satu array */
+        input-gpios
+            = <&pro_micro 7 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
+            , <&pro_micro 15 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>
+            ;
+    }; 
+    
+    default_transform: matrix_transform {
+        compatible = "zmk,matrix-transform";
+        columns = <2>;
+        rows = <1>;
+        map = <
+            RC(0,0) RC(0,1)
+        >;
+    }; 
+    
+    physical_layout: physical_layout { 
+        compatible = "zmk,physical-layout";
+        display-name = "Default Layout";
+        transform = <&default_transform>; 
+        kscan = <&kscan>;
+    }; 
+    
+    chosen {
+        zmk,kscan = &kscan;
+        zmk,physical-layout = &physical_layout;
+    };
+};
